@@ -133,7 +133,7 @@ SPAIN
 
  <!-- ONOS -->
   <vm name="ONOS" type="lxc" arch="x86_64">
-    <filesystem type="cow">/usr/share/vnx//filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.11.1</filesystem>
+    <filesystem type="cow">/usr/share/vnx//filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.12.0</filesystem>
     <if id="1" net="Net_ctrl">
       <ipv4>10.100.11.1/24</ipv4>
   	</if>
@@ -146,7 +146,7 @@ SPAIN
 	 <!-- Copy configuration files -->
     <filetree seq="on_boot" root="/root/conf/">conf/ONOS/start-ONOS.sh</filetree>
     <filetree seq="on_boot" root="/opt/onos/">conf/ONOS/options</filetree>
-    <filetree seq="on_boot" root="/opt/onos/config/network-cfg-json">conf/ONOS/network-cfg.json</filetree>
+    <filetree seq="on_boot" root="/opt/onos/config/network-cfg.json">conf/ONOS/network-cfg.json</filetree>
     <filetree seq="on_boot" root="/root/conf/">conf/ONOS/net-cfg.json</filetree>
     <filetree seq="on_boot" root="/root/conf/">conf/ONOS/config-ONOS_ipv4.sh</filetree>
 
@@ -166,19 +166,22 @@ SPAIN
 <!-- ROUTER -->
 <!-- ROUTER AS101 -->
   <vm name="R-101" type="lxc" arch="x86_64">
-    <filesystem type="cow">/usr/share/vnx//filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.11.1</filesystem>
+    <filesystem type="cow">/usr/share/vnx//filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.12.0</filesystem>
     <if id="1" net="Net4">
-      <ipv4>10.1.102.1/24</ipv4>
+      <ipv4>10.1.102.2/24</ipv4>
     </if>
     <if id="9" net="virbr0">
       <ipv4>dhcp</ipv4>
     </if>
-
     <!-- Enable IP forwarding in this node -->
     <forwarding type="ip"/>
-
-   
-
+    <route type="ipv4" gw="10.1.102.1">10.1.100.0/24</route>   
+    <route type="ipv4" gw="10.1.102.1">10.1.101.0/24</route>   
+    <filetree seq="on_boot" root="/root/">conf/hosts</filetree>
+    <exec seq="on_boot" type="verbatim">
+        cat /root/hosts >> /etc/hosts;
+        rm /root/hosts;
+    </exec>
 </vm>
 
 
@@ -186,39 +189,55 @@ SPAIN
 
   <!-- NODES -->
   <vm name="h1" type="lxc" arch="x86_64">
-    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.11.1</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.12.0</filesystem>
     <if id="1" net="Net2" >
-      <ipv4>10.1.100.1/24</ipv4>
+      <ipv4>10.1.100.11/24</ipv4>
     </if>
-    
-
+    <route type="ipv4" gw="10.1.100.1">default</route>   
+    <filetree seq="on_boot" root="/root/">conf/hosts</filetree>
+    <exec seq="on_boot" type="verbatim">
+        cat /root/hosts >> /etc/hosts;
+        rm /root/hosts;
+    </exec>
   </vm>
 
   <vm name="h2" type="lxc" arch="x86_64">
-    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.11.1</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.12.0</filesystem>
     <if id="1" net="Net2" >
-      <ipv4>10.1.100.2/24</ipv4>
+      <ipv4>10.1.100.12/24</ipv4>
     </if>
-   
-
+    <route type="ipv4" gw="10.1.100.1">default</route>   
+    <filetree seq="on_boot" root="/root/">conf/hosts</filetree>
+    <exec seq="on_boot" type="verbatim">
+        cat /root/hosts >> /etc/hosts;
+        rm /root/hosts;
+    </exec>
   </vm>
 
   <vm name="h3" type="lxc" arch="x86_64">
-    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.11.1</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.12.0</filesystem>
     <if id="1" net="Net3" >
-      <ipv4>10.1.101.3/24</ipv4>
+      <ipv4>10.1.101.11/24</ipv4>
     </if>
-
-
+    <route type="ipv4" gw="10.1.101.1">default</route>   
+    <filetree seq="on_boot" root="/root/">conf/hosts</filetree>
+    <exec seq="on_boot" type="verbatim">
+        cat /root/hosts >> /etc/hosts;
+        rm /root/hosts;
+    </exec>
   </vm>
 
   <vm name="h4" type="lxc" arch="x86_64">
-    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.11.1</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.12.0</filesystem>
     <if id="1" net="Net3" >
-      <ipv4>10.1.101.4/24</ipv4>
+      <ipv4>10.1.101.12/24</ipv4>
     </if>
-   
-
+    <route type="ipv4" gw="10.1.101.1">default</route>   
+    <filetree seq="on_boot" root="/root/">conf/hosts</filetree>
+    <exec seq="on_boot" type="verbatim">
+        cat /root/hosts >> /etc/hosts;
+        rm /root/hosts;
+    </exec>
   </vm>
 
 
