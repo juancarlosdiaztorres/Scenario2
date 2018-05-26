@@ -70,7 +70,7 @@ SPAIN
 
  <!-- ONOS -->
   <vm name="ONOS" type="lxc" arch="x86_64">
-    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.11.1</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-18.04-v025-onos-1.13.1</filesystem>
     <if id="1" net="Net_ctrl">
       <ipv4>10.100.11.1/24</ipv4>
   	</if>
@@ -99,7 +99,7 @@ SPAIN
 <!-- ROUTER -->
 <!-- ROUTER AS101 -->
   <vm name="R-101" type="lxc" arch="x86_64">
-    <filesystem type="cow">/usr/share/vnx//filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.11.1</filesystem>
+    <filesystem type="cow">/usr/share/vnx//filesystems/vnx_rootfs_lxc_ubuntu64-18.04-v025-onos-1.13.1</filesystem>
     <if id="1" net="Net4">
       <ipv4>10.1.102.2/24</ipv4>
     </if>
@@ -122,7 +122,7 @@ SPAIN
 
   <!-- NODES -->
   <vm name="h1" type="lxc" arch="x86_64">
-    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.11.1</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-18.04-v025-onos-1.13.1</filesystem>
     <if id="1" net="Net2" >
       <ipv4>10.1.100.11/24</ipv4>
     </if>
@@ -135,7 +135,7 @@ SPAIN
   </vm>
 
   <vm name="h2" type="lxc" arch="x86_64">
-    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.11.1</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-18.04-v025-onos-1.13.1</filesystem>
     <if id="1" net="Net2" >
       <ipv4>10.1.100.12/24</ipv4>
     </if>
@@ -148,7 +148,7 @@ SPAIN
   </vm>
 
   <vm name="h3" type="lxc" arch="x86_64">
-    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.11.1</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-18.04-v025-onos-1.13.1</filesystem>
     <if id="1" net="Net3" >
       <ipv4>10.1.101.11/24</ipv4>
     </if>
@@ -161,7 +161,7 @@ SPAIN
   </vm>
 
   <vm name="h4" type="lxc" arch="x86_64">
-    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.11.1</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-18.04-v025-onos-1.13.1</filesystem>
     <if id="1" net="Net3" >
       <ipv4>10.1.101.12/24</ipv4>
     </if>
