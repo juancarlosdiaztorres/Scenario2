@@ -6,7 +6,7 @@
 Scenario1 VNX
 ~~~~~~~~~~~~~~~~~~~~
 
-Name:        Scenario1
+Name:        Scenario2
 Description: 	This is an easy configuration for the deployment of a SDN. 
 				The estructure is based on a Leaf-Spine configuration of OpenFlow switches. 
 				It allows to simulate a Software Defined DataCenter meanwhile getting started with ONOS Controller and SDN.
@@ -47,93 +47,30 @@ SPAIN
 
   <!-- SWITCHES OPENFLOW -->
   <net name="Net0" mode="openvswitch" hwaddr="00:00:00:00:01:00" controller='tcp:10.100.11.1:6633' of_version="OpenFlow13" fail_mode='secure' >
-    <connection name='0_2' net='Net2'>
-      <!--<vlan>
-         <tag id='1'/>
-      </vlan>-->
-    </connection>
-	<connection name='0_3' net='Net3'>
-      <!--<vlan>
-         <tag id='1'/>
-      </vlan>-->
-    </connection>
-    <connection name='0_4' net='Net4'>
-      <!--<vlan>
-         <tag id='1'/>
-      </vlan>-->
-    </connection>
-    <!--<connection name='0_ctrl' net='Net_ctrl'/>-->
+    <connection name='0_2' net='Net2'></connection>
+	<connection name='0_3' net='Net3'></connection>
+    <connection name='0_4' net='Net4'></connection>
   </net>
 
-
   <net name="Net1" mode="openvswitch" hwaddr="00:00:00:00:01:01" controller='tcp:10.100.11.1:6633' of_version="OpenFlow13" fail_mode='secure' >
-    <connection name='1_3' net='Net3'>
-       <!--<vlan>
-         <tag id='1'/>
-       </vlan>-->
-    </connection>
-    <connection name='1_2' net='Net2'>
-      <!--<vlan>
-         <tag id='1'/>
-      </vlan>-->
-    </connection>
-    <connection name='1_4' net='Net4'>
-      <!--<vlan>
-         <tag id='1'/>
-      </vlan>-->
-    </connection>
-    <!--<connection name='1_ctrl' net='Net_ctrl'/>-->
+  	<connection name='1_2' net='Net2'></connection>
+    <connection name='1_3' net='Net3'></connection>
+    <connection name='1_4' net='Net4'></connection>
   </net> 
 
   <net name="Net2" mode="openvswitch" hwaddr="00:00:00:00:01:02" controller='tcp:10.100.11.1:6633' of_version="OpenFlow13" fail_mode='secure'>
-  	<!--<connection name='2_ctrl' net='Net_ctrl'/>-->
   </net>
 
   <net name="Net3" mode="openvswitch" hwaddr="00:00:00:00:01:03" controller='tcp:10.100.11.1:6633' of_version="OpenFlow13" fail_mode='secure'>
-  	<!--<connection name='3_ctrl' net='Net_ctrl'/>-->
   </net>
   
    <net name="Net4" mode="openvswitch" hwaddr="00:00:00:00:01:04" controller='tcp:10.100.11.1:6633' of_version="OpenFlow13" fail_mode='secure'>
-  	<!--<connection name='2_ctrl' net='Net_ctrl'/>-->
   </net>
 
 
-
- <!--  <net name="s1" mode="openvswitch">
-    <connection name='1-11' net='s11'>
-          <vlan>
-            <tag id='1'/>
-            <tag id='2'/>
-          </vlan>
-      </connection>
-      <connection name='1-12' net='s12'>
-          <vlan>
-            <tag id='1'/>
-            <tag id='2'/>
-          </vlan>
-      </connection>
-    </net>
-   <net name="s2" mode="openvswitch">
-    <connection name='2-11' net='s11'>
-          <vlan>
-            <tag id='1'/>
-            <tag id='2'/>
-          </vlan>
-      </connection>
-      <connection name='2-12' net='s12'>
-          <vlan>
-            <tag id='1'/>
-            <tag id='2'/>
-          </vlan>
-      </connection>
-    </net>
-   <net name="s11" mode="openvswitch"/>
-   <net name="s12" mode="openvswitch"/>
-   <net name="net_ctrl" mode="virtual_bridge"/> -->
-
  <!-- ONOS -->
   <vm name="ONOS" type="lxc" arch="x86_64">
-    <filesystem type="cow">/usr/share/vnx//filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.12.0</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.11.1</filesystem>
     <if id="1" net="Net_ctrl">
       <ipv4>10.100.11.1/24</ipv4>
   	</if>
@@ -142,13 +79,9 @@ SPAIN
     </if>
   	
   	<!-- Copy configuration files -->
-	<!--<filetree seq="on_boot" root="/root/conf/">/home/coit/Desktop/TFG/conf/ONOS/</filetree>-->
-	 <!-- Copy configuration files -->
     <filetree seq="on_boot" root="/root/conf/">conf/ONOS/start-ONOS.sh</filetree>
     <filetree seq="on_boot" root="/opt/onos/">conf/ONOS/options</filetree>
-    <filetree seq="on_boot" root="/opt/onos/config/network-cfg.json">conf/ONOS/network-cfg.json</filetree>
-    <filetree seq="on_boot" root="/root/conf/">conf/ONOS/net-cfg.json</filetree>
-    <filetree seq="on_boot" root="/root/conf/">conf/ONOS/config-ONOS_ipv4.sh</filetree>
+    <filetree seq="on_boot" root="/opt/onos/config/">conf/ONOS/network-cfg.json</filetree>
 
 
 	<!-- Configure and Start ONOS (IPv4) -->
@@ -166,7 +99,7 @@ SPAIN
 <!-- ROUTER -->
 <!-- ROUTER AS101 -->
   <vm name="R-101" type="lxc" arch="x86_64">
-    <filesystem type="cow">/usr/share/vnx//filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.12.0</filesystem>
+    <filesystem type="cow">/usr/share/vnx//filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.11.1</filesystem>
     <if id="1" net="Net4">
       <ipv4>10.1.102.2/24</ipv4>
     </if>
@@ -189,7 +122,7 @@ SPAIN
 
   <!-- NODES -->
   <vm name="h1" type="lxc" arch="x86_64">
-    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.12.0</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.11.1</filesystem>
     <if id="1" net="Net2" >
       <ipv4>10.1.100.11/24</ipv4>
     </if>
@@ -202,7 +135,7 @@ SPAIN
   </vm>
 
   <vm name="h2" type="lxc" arch="x86_64">
-    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.12.0</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.11.1</filesystem>
     <if id="1" net="Net2" >
       <ipv4>10.1.100.12/24</ipv4>
     </if>
@@ -215,7 +148,7 @@ SPAIN
   </vm>
 
   <vm name="h3" type="lxc" arch="x86_64">
-    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.12.0</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.11.1</filesystem>
     <if id="1" net="Net3" >
       <ipv4>10.1.101.11/24</ipv4>
     </if>
@@ -228,7 +161,7 @@ SPAIN
   </vm>
 
   <vm name="h4" type="lxc" arch="x86_64">
-    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.12.0</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/vnx_rootfs_lxc_ubuntu64-16.04-v025-onos-1.11.1</filesystem>
     <if id="1" net="Net3" >
       <ipv4>10.1.101.12/24</ipv4>
     </if>
@@ -245,12 +178,6 @@ SPAIN
         <hostif net="Net_ctrl">
             <ipv4>10.100.11.3/24</ipv4>
         </hostif>
-        <!--<route type="ipv4" gw="10.100.11.2">10.100.1.0/24</route>
-        <route type="ipv4" gw="10.100.11.2">10.100.2.0/24</route>
-        <route type="ipv4" gw="10.100.11.2">10.100.3.0/24</route>
-        <exec seq="config-extrouter" type="verbatim">
-            vnx_config_nat netmgt enp0s3
-        </exec>-->
   </host>
 
 
